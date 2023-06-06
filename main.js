@@ -117,7 +117,7 @@ function mostrar(){
 mostrar()
 
 
-
+/*
 function sublinhar(linha){
    
     //Cria referência com a tabela
@@ -152,6 +152,7 @@ function armazenarCelula(posicaoLinha){
 
     
 }
+*/
 
 //Armazeieni > Mostrar () = pegar armazenado e exibir 
 //Remover () . Pegar armazenado e remover o numero referente e  linha . 
