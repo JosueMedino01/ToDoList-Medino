@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Eczar:wght@600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:wght@700&family=Open+Sans&display=swap');
+
+@media screen and (max-width: 375px){
+    .cabecalho-titulo{
+        margin-top: 10px;
+        font-family: 'Eczar', serif;
+        font-size: 35px;
+        text-align: center;
+        font-weight: 700  ;
+        color: black;
+    }
+
+
+    .conteudo-adicionar{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        
+        padding: 15px;
+        background-color: white;
+        width: 85%;
+        height: auto;
+    
+        border: 0.8px solid black;
+    }
+
+    .conteudo-adicionar-etiqueta{
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+        font-weight: 400;
+        font-size: 18px;
+        margin-right: 10px;
+        border: none;
+        color: black;
+        
+    }
+    
+    .conteudo-adicionar-input{
+        width: 60%;
+        height: 35px;
+        background-color: white;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .conteudo-adicionar-botao{
+        border: none;
+        margin-left: 5px;
+    }
+    
+    .conteudo-adicionar-botao img{
+        width: 35px;
+        background-color: white;
+    
+       
+    }
+
+
+
+    .conteudo-tarefas{
+        background-color: white;
+        width: 85%;
+        height: 62vh;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        border: 0.8px solid black;
+        margin-top: 20px;
+        padding: 0;
+        overflow: scroll;
+    }
+    
+    .conteudo-tarefas-subtitulo{
+        font-size: 25px;
+        color: black;
+        font-weight: bold;
+        background-color: white;
+        font-family: 'Libre Baskerville', serif;  
+        margin-top: 5%;
+    }
+
+    .conteudo-tarefas-tabela{
+        margin-top: 1%;
+        border: none;
+        border-collapse: separate  ;
+        border-spacing: 2px 15px;
+        background-color: white;
+        
+    }
+    
+    
+    
+    .conteudo-tarefas-tabela-coluna1{
+        min-width: 5%;
+        border: none;
+        
+        
+    }
+    
+    .conteudo-tarefas-tabela-coluna2{
+        min-width: 220px;
+        border: 1px solid black;
+        
+        
+    }
+    
+   
+    .conteudo-tarefas-tabela-coluna3{
+        min-width: 5%;
+        border: none;
+        
+    }
+    tr{
+        height: auto;
+    }
+
+    .rodape{
+        display: flex;
+        justify-content: center;
+        gap: 8%;
+    }
+    .rodape-ancora-img{
+        width: 40px;
+    }
+
+}
