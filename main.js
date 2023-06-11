@@ -70,9 +70,9 @@ function inserirLinha (tasksString){
     col2.className = 'conteudo-tarefas-tabela-coluna3'
    
     //Cria um array que pecorre todos os valores 
-    col0.innerHTML = "<input type='checkbox' class='ckMarcado' onchange='sublinhar(this.parentNode.parentNode)'>"
+    col0.innerHTML = "<input type='checkbox' class='ckMarcado' onchange='armazenarPosicoesMarcadas(this.parentNode.parentNode)'>"
     col1.textContent = tasksString
-    col2.innerHTML = "<button class='excluir'> <img src='img/lixo2.png'> </button>"
+    col2.innerHTML = "<button class='excluir' onclick='remover()'> <img src='img/lixo2.png'> </button>"
 
     // Adiciona o evento de clique ao botão de exclusão
     col2.querySelector(".excluir").addEventListener("click", remover)
@@ -86,15 +86,40 @@ function remover(){
    
     linha.parentNode.removeChild(linha)
 
-//A PARTIR DA POSIÇÃO PRECISO EXCLUIR DO LOCALSORAGE
-let listaTasks = localStorage.getItem('tasks').split(';')
-listaTasks.splice(posicao,1)
+    //A PARTIR DA POSIÇÃO PRECISO EXCLUIR DO LOCALSORAGE
+    let listaTasks = localStorage.getItem('tasks').split(';')
+    listaTasks.splice(posicao,1)
 
-//Transforma em Strings 
-let tasksAll = listaTasks.join(';')
-//Atualiza as tasks 
-localStorage.setItem('tasks', tasksAll)
+    //Transforma em Strings 
+    let tasksAll = listaTasks.join(';')
+    //Atualiza as tasks 
+    localStorage.setItem('tasks', tasksAll)
+
+    let arrayPosicoes = localStorage.getItem('checkbox').split(';')
+    if(arrayPosicoes[0] != ''){
+        
+        if(arrayPosicoes.indexOf(`${posicao}`) != -1){
+            arrayPosicoes.splice(arrayPosicoes.indexOf(`${posicao}`), 1)
+            
+            //atualizando localStorage
+            localStorage.setItem('checkbox', arrayPosicoes.join(';') )
     
+        }
+    
+        //Reorganizar o vetor => Reudir -1 para os números menores que a posição
+        let arrayReorganizado = []
+        for(let i = 0; i < arrayPosicoes.length; i++){
+            if(Number(arrayPosicoes[i]) > posicao){
+               arrayReorganizado.push(Number(arrayPosicoes[i]) - 1)
+            } else{
+                arrayReorganizado.push(Number(arrayPosicoes[i]))
+            }
+        }
+    
+        localStorage.setItem('checkbox', arrayReorganizado.join(';'))
+    }
+    
+
 }
 
 
@@ -117,43 +142,55 @@ function mostrar(){
 mostrar()
 
 
-/*
-function sublinhar(linha){
-   
+function armazenarPosicoesMarcadas(linha){
+    //Cria referência com a tabela
+    let posicao  = linha.rowIndex
+
+    if(!localStorage.getItem('checkbox')){
+        localStorage.setItem('checkbox', posicao)
+    } else{
+        let arrayPosicoes = localStorage.getItem('checkbox').split(';')
+        if(arrayPosicoes.indexOf(`${posicao}`) != -1){
+            arrayPosicoes.splice(arrayPosicoes.indexOf(`${posicao}`), 1)
+            
+            //atualizando localStorage
+            localStorage.setItem('checkbox', arrayPosicoes.join(';') )
+
+        } else{
+            let listaPosiçõesMarcadas= localStorage.getItem('checkbox') + ';' + posicao
+            localStorage.setItem('checkbox', listaPosiçõesMarcadas)
+        }               
+    }
+
+    marcar() 
+}
+
+
+
+function marcar(){
+    //Resgata as posições salvas em localStorage em um Array
+    let arrayPosicoes = localStorage.getItem('checkbox').split(';')
+
     //Cria referência com a tabela
     let tabela = document.getElementById('tbTasks')
+    let checkboxes = tabela.querySelectorAll('td input[type="checkbox"]')
 
-    let checkboxes = tabela.querySelectorAll('td input[type="checkbox"]');
-    
-    let posicao = linha.rowIndex
-    let celula = tabela.rows[posicao].cells[1]
-    
-    if(checkboxes[posicao].checked){
-        celula.classList.add('sublinhado')
-        armazenarCelula(posicao)
-    } else {      
-        celula.classList.remove('sublinhado')
-    }
-    
-    
-
-}
-
-function armazenarCelula(posicaoLinha){
-    if(!localStorage.getItem('checkbox')){
-        localStorage.setItem('checkbox', posicaoLinha)
-       
-    } else{
-        let listaPosiçõesMarcadas= localStorage.getItem('checkbox') + ';' + posicaoLinha
-
-        localStorage.setItem('checkbox', listaPosiçõesMarcadas)
-        
+    if(localStorage.getItem('checkbox')){    
+        if(arrayPosicoes[0] != ''){
+            for(let i = 0; i< arrayPosicoes.length; i++){               
+                checkboxes[Number(arrayPosicoes[i])].checked = true           
+            } 
+        }
     }
 
-    
+    for(let i = 0; i < checkboxes.length; i++){
+        let celula = tabela.rows[i].cells[1]  
+        if(checkboxes[i].checked == true){
+            celula.classList.add('tachado')
+        }else{
+            celula.classList.remove('tachado')
+        }
+    }
 }
-*/
 
-//Armazeieni > Mostrar () = pegar armazenado e exibir 
-//Remover () . Pegar armazenado e remover o numero referente e  linha . 
-
+marcar()
