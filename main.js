@@ -194,3 +194,10 @@ function marcar(){
 }
 
 marcar()
+
+let inTask = document.getElementById('inTask')
+inTask.addEventListener('keyup', function(e){
+    if(e.keyCode === 13){
+        add()
+    }
+})
