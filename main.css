@@ -59,7 +59,9 @@ body{
 }
 
 .conteudo-adicionar-input:hover{
-    background-color: #F1F1F1;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
     
 }
 
