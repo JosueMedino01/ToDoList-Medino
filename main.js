@@ -201,3 +201,11 @@ inTask.addEventListener('keyup', function(e){
         add()
     }
 })
+
+function sair(){
+    alert("Eae morena, Quando que a gente sai de novo? ")
+}
+
+function cancelar(){
+    alert("[ERROR] Não é possível apagar esse tarefa!")
+}
