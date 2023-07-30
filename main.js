@@ -167,7 +167,7 @@ function armazenarPosicoesMarcadas(linha){
 
 
 
-function marcar(){
+/*function marcar(){
     //Resgata as posições salvas em localStorage em um Array
     let arrayPosicoes = localStorage.getItem('checkbox').split(';')
 
@@ -191,7 +191,7 @@ function marcar(){
             celula.classList.remove('tachado')
         }
     }
-}
+}*/
 
 marcar()
 
